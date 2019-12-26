@@ -8,14 +8,9 @@
     <title>Insert title here</title>
 </head>
 <body>
-<h2>Hello World!Success</h2>
+<h2>Hello World!Error</h2>
 
-name :${requestScope.name }
-name :${sessionScope.name }
 ex :${ex}
-
-<% request.getAttribute("name"); %>
-<% session.getAttribute("name"); %>
 
 
         </body>

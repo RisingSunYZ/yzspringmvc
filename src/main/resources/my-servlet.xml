@@ -23,6 +23,44 @@
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
     <!--配置了静态资源 和 view-controller 这个必配，要不正常请求失效 -->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+               <ref bean="userCovertor"></ref>
+            </set>
+        </property>
+    </bean>
+
+
+    <bean id="commonsMultipartFile" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="1024000"></property>
+    </bean>
+
+
+
+    <mvc:interceptors>
+        <bean class="com.yz.util.FirstInceptor"></bean>
+        <mvc:interceptor>
+            <mvc:mapping path="/*/**/*.do"/>
+            <bean class="com.yz.util.SecondInceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <!--如果有MyControllerAdvice 还是会走MyControllerAdvice 当然前提是MyControllerAdvice和  SimpleMappingExceptionResolver 异常类型重叠 不重叠的各走各的
+            如果走到因此会被ResponseStatusExceptionResolver 还是会走因此会被ResponseStatusExceptionResolver
+    -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionAttribute" value="ex"></property>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.RuntimeException">myError</prop>
+            </props>
+        </property>
+    </bean>
 
 </beans>

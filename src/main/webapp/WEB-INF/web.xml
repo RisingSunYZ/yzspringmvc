@@ -35,4 +35,13 @@
   <!--<url-pattern>*.do</url-pattern>-->
 </servlet-mapping>
 
+  <filter>
+    <filter-name>myfilter</filter-name>
+    <filter-class>com.yz.util.MyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>myfilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
 </web-app>
