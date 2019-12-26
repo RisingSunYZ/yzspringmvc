@@ -62,5 +62,8 @@
     Desc: <input type="text" name="desc"/>
     <input type="submit" value="Submit"/>
 </form>
+
+
+<a href="/myController/testSpring" >testSpring</a><br>
 </body>
 </html>

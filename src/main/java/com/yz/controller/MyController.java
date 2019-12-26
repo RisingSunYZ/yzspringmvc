@@ -1,7 +1,9 @@
 package com.yz.controller;
 
 import com.yz.mode.User;
+import com.yz.service.UserService;
 import com.yz.util.MyException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @Description:
@@ -26,6 +29,13 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/myController")
 public class MyController {
+
+    public MyController(){
+        System.out.println("======MyController===========");
+    }
+
+    @Autowired
+    private UserService userService;
 
 
 
@@ -168,5 +178,11 @@ public class MyController {
 //        return ModelAndView;
 //    }
 
+
+    @ResponseBody
+    @RequestMapping("/testSpring")
+    public List<User> testSpring()   {
+        return userService.getAll();
+    }
 
 }

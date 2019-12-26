@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 @ControllerAdvice
 public class MyControllerAdvice {
 
+    public MyControllerAdvice(){
+        System.out.println("========MyControllerAdvice============");
+    }
+
 
 //    @ExceptionHandler
 //    public String handler(ArithmeticException ex){
