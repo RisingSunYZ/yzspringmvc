@@ -1,5 +1,6 @@
 package com.yz.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yz.mode.User;
 import com.yz.service.UserService;
 import com.yz.util.MyException;
@@ -145,12 +146,14 @@ public class MyController {
      **/
     @ResponseBody
     @RequestMapping("/testMessageCover")
-    public User testMessageCover(@RequestBody User user2){
+    public String testMessageCover(@RequestBody String user2){
         User User = new User();
         User.setEmail("357823669@qq");
         User.setName("yz");
-        User.setSex("boy");
-        return User;
+        User.setSex("男");
+        String s = JSONObject.toJSONString(User);
+        System.out.println(s);
+        return s;
     }
 
 

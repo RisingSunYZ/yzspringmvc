@@ -26,7 +26,23 @@
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
     <!--配置了静态资源 和 view-controller 这个必配，要不正常请求失效 -->
-    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
+        <mvc:message-converters>
+            <!--这个不配置RequestBody ResponseBody String的乱码
+            目前请求还是乱么 也进了StringHttpMessageConverter 是UTF-8啊，求解决
+            -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+
+
+    </mvc:annotation-driven>
 
 
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

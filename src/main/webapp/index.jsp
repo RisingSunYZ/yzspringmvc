@@ -14,7 +14,7 @@
     $(function(){
         $("#testJson").click(function(){
             var url = this.href;
-            var args = {"name":"yz","sex":"boy","email":"357823669@qq"};
+            var args = {"name":"yz","sex":"男","email":"357823669@qq"};
             $.ajax({ url: url,contentType:"application/json",method:"POST", data:args,success: function(){
                     alert(data);
                 }});
